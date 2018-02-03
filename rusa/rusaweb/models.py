@@ -10,6 +10,9 @@ class Program(models.Model):
 	no_of_registrations = models.PositiveIntegerField()
 	no_of_tasks = models.PositiveIntegerField()
 
+	def __str__(self):
+		return self.name
+
 class Participant(models.Model):
 	program = models.ForeignKey(Program, on_delete=models.PROTECT)
 	email = models.EmailField(max_length=50, unique=True)
@@ -26,6 +29,9 @@ class Participant(models.Model):
 	age_group = models.CharField(max_length=2, choices=AGE_GROUP_CHOICES, default='AB')
 	joined_data = models.DateTimeField(auto_now_add=True)
 
+	def __str__(self):
+		return self.user_name + " : " + self.email
+
 class Task(models.Model):
 	program = models.ForeignKey(Program, on_delete=models.PROTECT)
 	name = models.CharField(max_length=400)
@@ -33,7 +39,13 @@ class Task(models.Model):
 	start_date = models.DateTimeField(auto_now_add=True)
 	no_of_submissions = models.PositiveIntegerField()
 
+	def __str__(self):
+		return self.name + " : " + str(self.no_of_submissions)
+
 class TaskCompletion(models.Model):
 	participant = models.ForeignKey(Participant, on_delete=models.PROTECT)
 	task = models.ForeignKey(Task, on_delete=models.CASCADE)
 	completion_date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return str(self.task) + str(participant)
