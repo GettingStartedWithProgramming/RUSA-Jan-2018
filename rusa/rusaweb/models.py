@@ -48,4 +48,4 @@ class TaskCompletion(models.Model):
 	completion_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return str(self.task) + " -> " + str(self.participant)
+		return str(self.task.name) + " : " + str(self.participant.email)
