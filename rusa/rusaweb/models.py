@@ -5,8 +5,8 @@ from django.db import models
 class Program(models.Model):
 	name = models.CharField(max_length=250)
 	description = models.CharField(max_length=1000, default="", blank=True)
-	start_date = models.DateTimeField()
-	end_date = models.DateTimeField()
+	start_date = models.DateField()
+	end_date = models.DateField()
 	no_of_registrations = models.PositiveIntegerField()
 	no_of_tasks = models.PositiveIntegerField()
 
