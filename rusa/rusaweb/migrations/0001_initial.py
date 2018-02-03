@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('is_student', models.BooleanField(default=False)),
                 ('college_name', models.CharField(blank=True, default='', max_length=350)),
                 ('age_group', models.CharField(choices=[('AA', '10-14'), ('AB', '15-18'), ('BB', '19-23'), ('BC', 'Above 23')], default='AB', max_length=2)),
-                ('joined_data', models.DateTimeField(auto_now_add=True)),
+                ('joined_date', models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(
@@ -33,8 +33,8 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(blank=True, default='', max_length=1000)),
                 ('start_date', models.DateField()),
                 ('end_date', models.DateField()),
-                ('no_of_registrations', models.PositiveIntegerField()),
-                ('no_of_tasks', models.PositiveIntegerField()),
+                ('no_of_registrations', models.PositiveIntegerField(default=0, blank=True)),
+                ('no_of_tasks', models.PositiveIntegerField(default=0, blank=True)),
             ],
         ),
         migrations.CreateModel(
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=400)),
                 ('description', models.CharField(max_length=1500)),
                 ('start_date', models.DateTimeField(auto_now_add=True)),
-                ('no_of_submissions', models.PositiveIntegerField()),
+                ('no_of_submissions', models.PositiveIntegerField(default=0, blank=True)),
                 ('program', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='rusaweb.Program')),
             ],
         ),

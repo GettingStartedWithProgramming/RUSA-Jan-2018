@@ -7,8 +7,8 @@ class Program(models.Model):
 	description = models.CharField(max_length=1000, default="", blank=True)
 	start_date = models.DateField()
 	end_date = models.DateField()
-	no_of_registrations = models.PositiveIntegerField()
-	no_of_tasks = models.PositiveIntegerField()
+	no_of_registrations = models.PositiveIntegerField(default=0, blank=True)
+	no_of_tasks = models.PositiveIntegerField(default=0, blank=True)
 
 	def __str__(self):
 		return self.name
@@ -27,7 +27,7 @@ class Participant(models.Model):
 		('BC', "Above 23"),
 	)
 	age_group = models.CharField(max_length=2, choices=AGE_GROUP_CHOICES, default='AB')
-	joined_data = models.DateTimeField(auto_now_add=True)
+	joined_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return self.user_name + " : " + self.email
@@ -37,7 +37,7 @@ class Task(models.Model):
 	name = models.CharField(max_length=400)
 	description = models.CharField(max_length=1500)
 	start_date = models.DateTimeField(auto_now_add=True)
-	no_of_submissions = models.PositiveIntegerField()
+	no_of_submissions = models.PositiveIntegerField(default=0, blank=True)
 
 	def __str__(self):
 		return self.name + " : " + str(self.no_of_submissions)
@@ -48,4 +48,4 @@ class TaskCompletion(models.Model):
 	completion_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return str(self.task) + str(participant)
+		return str(self.task) + " -> " + str(self.participant)
