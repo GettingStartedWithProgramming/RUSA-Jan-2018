@@ -17,11 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from rusaweb.views import (
 	home,
-	signup,
+	signupForm,
+	userAccount,
 )
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
-	url(r'^signup/', signup, name="signup"),
+	url(r'^signup/', signupForm, name="signup"),
+	url(r'^account/', userAccount, name="account"),
     url(r'^admin/', admin.site.urls),
 ]

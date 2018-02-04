@@ -40,7 +40,7 @@ class Task(models.Model):
 	no_of_submissions = models.PositiveIntegerField(default=0, blank=True)
 
 	def __str__(self):
-		return self.name + " : " + str(self.no_of_submissions)
+		return self.name
 
 class TaskCompletion(models.Model):
 	participant = models.ForeignKey(Participant, on_delete=models.PROTECT)
@@ -48,4 +48,4 @@ class TaskCompletion(models.Model):
 	completion_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return str(self.task.name) + " : " + str(self.participant.email)
+		return str(self.task.name)
