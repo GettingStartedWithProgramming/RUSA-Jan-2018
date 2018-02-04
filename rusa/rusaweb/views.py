@@ -13,8 +13,7 @@ from .models import (
 )
 
 # Create your views here.
-
-login_url = "/signup"
+login_url = "/signup/"
 
 def home(request):
 	return render(request, "home.html", {})
