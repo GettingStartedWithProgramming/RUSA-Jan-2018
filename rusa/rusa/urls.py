@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from rusaweb.views import home
+from rusaweb.views import (
+	home,
+	signup,
+)
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
+	url(r'^signup/', signup, name="signup"),
     url(r'^admin/', admin.site.urls),
 ]

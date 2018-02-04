@@ -30,7 +30,7 @@ class Participant(models.Model):
 	joined_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.user_name + " : " + self.email
+		return str(self.user) + " : " + self.full_name
 
 class Task(models.Model):
 	program = models.ForeignKey(Program, on_delete=models.PROTECT)
