@@ -1,8 +1,12 @@
 <h1>List of tasks</h1>
+
+<button type="button"><a href="/accounts/tasks/">All Tasks</a></button>
+<button type="button"><a href="/accounts/tasks/done/">Completed Tasks</a></button>
+
 {% for task in tasks %}
-	<h2>task.name</h2>
-	<h2>task.description</h2>
-	<h2>task.start_date</h2>
-	<h2>task.no_of_submissions</h2>
-	<h2>=======================</h2>
+<div>
+	<a href="/accounts/tasks/{{ task.id }}">{{ task.name }}</a>
+	<h4>launch time: {{ task.start_date }} submissions: {{ task.no_of_submissions }}</h4>
+<div>
+	<h3>=============</h3>
 {% endfor %}

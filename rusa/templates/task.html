@@ -1,0 +1,10 @@
+<h1>Task:</h1>
+<button type="button"><a href="/accounts/tasks/">Back</a></button>
+
+{% for task in task %}
+	<h1>{{ task.name }}</h1>
+	<h2>{{ task.program }}</h2>
+	<h2>{{ task.description }}</h2>
+	<h2>{{ task.start_date }}</h2>
+	<h2>{{ task.no_of_submissions }}</h2>
+{% endfor %}

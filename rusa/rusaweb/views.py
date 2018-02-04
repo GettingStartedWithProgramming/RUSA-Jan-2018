@@ -10,6 +10,7 @@ from .models import (
 	Program,
 	Participant,
 	Task,
+	TaskCompletion,
 )
 
 # Create your views here.
@@ -51,12 +52,24 @@ def userAccount(request):
 	return render(request, "account.html", {"participant": participant})
 
 @login_required(login_url=login_url)
+def logoutUser(request):
+	logout(request)
+	return home(request)
+
+@login_required(login_url=login_url)
 def listTasks(request):
 	participant = get_object_or_404(Participant, user=request.user)
 	tasks = Task.objects.filter(program=participant.program)
 	return render(request, "tasks.html", {"tasks": tasks})
 
 @login_required(login_url=login_url)
-def logoutUser(request):
-	logout(request)
-	return home(request)
+def listCompletedTasks(request):
+	participant = get_object_or_404(Participant, user=request.user)
+	tasks = TaskCompletion.objects.filter(program=participant.program)
+	return render(request, "tasks.html", {"tasks": tasks})
+
+@login_required(login_url=login_url)
+def getTask(request, task_id):
+	participant = get_object_or_404(Participant, user=request.user)
+	task = Task.objects.filter(program=participant.program, id=task_id)
+	return render(request, "task.html", {"task": task})
