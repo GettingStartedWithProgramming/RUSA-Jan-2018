@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -14,9 +15,8 @@ class Program(models.Model):
 		return self.name
 
 class Participant(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	program = models.ForeignKey(Program, on_delete=models.PROTECT)
-	email = models.EmailField(max_length=50, unique=True)
-	user_name = models.CharField(max_length=25, unique=True)
 	full_name = models.CharField(max_length=100)
 	is_student = models.BooleanField(default=False)
 	college_name = models.CharField(max_length=350, default="", blank=True)

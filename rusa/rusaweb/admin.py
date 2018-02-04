@@ -13,7 +13,7 @@ class ProgramAdmin(admin.ModelAdmin):
 		model = Program
 
 class ParticipantAdmin(admin.ModelAdmin):
-	list_display = ["user_name", "email", "age_group", "program"]
+	list_display = ["user", "age_group", "program"]
 	class Meta:
 		model = Participant
 
