@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import (
 	UserSignupForm,
@@ -56,3 +56,8 @@ def listTasks(request):
 	participant = get_object_or_404(Participant, user=request.user)
 	tasks = Task.objects.filter(program=participant.program)
 	return render(request, "tasks.html", {"tasks": tasks})
+
+@login_required(login_url=login_url)
+def logoutUser(request):
+	logout(request)
+	return home(request)
