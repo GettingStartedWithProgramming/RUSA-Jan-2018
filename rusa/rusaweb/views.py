@@ -15,9 +15,11 @@ from .models import (
 
 # Create your views here.
 login_url = "/signup/"
+PROGRAM_NAME = "RUSA 2018"
 
 def home(request):
-	return render(request, "home.html", {})
+	program = get_object_or_404(Program, name=PROGRAM_NAME)
+	return render(request, "home.html", {"program": program})
 
 def signupForm(request):
 	if request.method == 'POST':
@@ -71,5 +73,26 @@ def listCompletedTasks(request):
 @login_required(login_url=login_url)
 def getTask(request, task_id):
 	participant = get_object_or_404(Participant, user=request.user)
-	task = Task.objects.filter(program=participant.program, id=task_id)
-	return render(request, "task.html", {"task": task})
+	task = Task.objects.get(program=participant.program, id=task_id)
+	submissions = TaskCompletion.objects.filter(task=task)
+	return render(request, "task.html", {"task": task, "submissions": submissions})
+
+@login_required(login_url=login_url)
+def getTask(request, task_id):
+	participant = get_object_or_404(Participant, user=request.user)
+	task = Task.objects.get(program=participant.program, id=task_id)
+	submissions = TaskCompletion.objects.filter(task=task)
+	return render(request, "task.html", {"task": task, "submissions": submissions})
+
+@login_required(login_url=login_url)
+def getUser(request, user_id):
+	participant = get_object_or_404(Participant, user=request.user)
+	user = get_object_or_404(Participant, id=user_id, program=participant.program)
+	tasks = TaskCompletion.objects.filter(participant=user)
+	return render(request, "user.html", {"user": user, "tasks": tasks})
+
+@login_required(login_url=login_url)
+def getAllUsers(request):
+	participant = get_object_or_404(Participant, user=request.user)
+	users = Participant.objects.filter(program=participant.program)
+	return render(request, "users.html", {"users": users})

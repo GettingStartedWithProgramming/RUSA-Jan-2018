@@ -1,10 +1,13 @@
 <h1>Task:</h1>
 <button type="button"><a href="/accounts/tasks/">Back</a></button>
 
-{% for task in task %}
-	<h1>{{ task.name }}</h1>
-	<h2>{{ task.program }}</h2>
-	<h2>{{ task.description }}</h2>
-	<h2>{{ task.start_date }}</h2>
-	<h2>{{ task.no_of_submissions }}</h2>
+<h1>{{ task.name }}</h1>
+<h2>{{ task.program }}</h2>
+<h2>{{ task.description }}</h2>
+<h2>{{ task.start_date }}</h2>
+<h2>{{ task.no_of_submissions }}</h2>
+<h2>Participants who have completed tasks!!</h2>
+{% for submission in submissions %}
+	<a href="/accounts/users/{{ submission.participant.id }}">{{ submission.participant.full_name }}</a>
+	<h2>{{ submission.completion_date }}</h2>
 {% endfor %}

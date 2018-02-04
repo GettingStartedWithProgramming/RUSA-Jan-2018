@@ -22,6 +22,8 @@ from rusaweb.views import (
 	listTasks,
 	logoutUser,
 	getTask,
+	getAllUsers,
+	getUser,
 )
 from django.contrib.auth.views import login
 
@@ -29,6 +31,8 @@ urlpatterns = [
 	url(r'^$', home, name="home"),
 	url(r'^signup/', signupForm, name="signup"),
 	url(r'^login/', login, name="login"),
+	url(r'^accounts/users/$', getAllUsers, name="get_users"),
+	url(r'^accounts/users/(?P<user_id>[\w]+)/$', getUser, name="get_user"),
 	url(r'^accounts/profile/$', userAccount, name="account"),
 	url(r'^accounts/logout/$', logoutUser, name="logout"),
 	url(r'^accounts/tasks/$', listTasks, name="tasks"),
