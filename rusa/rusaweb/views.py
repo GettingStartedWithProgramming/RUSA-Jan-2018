@@ -44,7 +44,7 @@ def signupUser(request):
 	raw_password = userform.cleaned_data.get('password1')
 	user = authenticate(username=user.username, password=raw_password)
 	login(request, user)
-	return redirect("/account/")
+	return redirect("/accounts/profile/")
 
 @login_required(login_url=login_url)
 def userAccount(request):

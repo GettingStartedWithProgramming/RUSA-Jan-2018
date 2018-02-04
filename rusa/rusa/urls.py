@@ -22,12 +22,14 @@ from rusaweb.views import (
 	listTasks,
 	logoutUser,
 )
+from django.contrib.auth.views import login
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
 	url(r'^signup/', signupForm, name="signup"),
-	url(r'^account/$', userAccount, name="account"),
-	url(r'^account/logout/$', logoutUser, name="logout"),
-	url(r'^account/tasks/$', listTasks, name="tasks"),
+	url(r'^login/', login, name="login"),
+	url(r'^accounts/profile/$', userAccount, name="account"),
+	url(r'^accounts/logout/$', logoutUser, name="logout"),
+	url(r'^accounts/tasks/$', listTasks, name="tasks"),
     url(r'^admin/', admin.site.urls),
 ]
