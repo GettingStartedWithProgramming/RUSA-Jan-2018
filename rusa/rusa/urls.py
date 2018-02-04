@@ -19,11 +19,13 @@ from rusaweb.views import (
 	home,
 	signupForm,
 	userAccount,
+	listTasks,
 )
 
 urlpatterns = [
 	url(r'^$', home, name="home"),
 	url(r'^signup/', signupForm, name="signup"),
-	url(r'^account/', userAccount, name="account"),
+	url(r'^account/$', userAccount, name="account"),
+	url(r'^account/tasks/', listTasks, name="tasks"),
     url(r'^admin/', admin.site.urls),
 ]

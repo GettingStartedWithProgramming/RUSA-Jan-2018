@@ -9,6 +9,7 @@ from .forms import (
 from .models import (
 	Program,
 	Participant,
+	Task,
 )
 
 # Create your views here.
@@ -49,3 +50,9 @@ def signupUser(request):
 def userAccount(request):
 	participant = get_object_or_404(Participant, user=request.user)
 	return render(request, "account.html", {"participant": participant})
+
+@login_required(login_url=login_url)
+def listTasks(request):
+	participant = get_object_or_404(Participant, user=request.user)
+	tasks = Task.objects.filter(program=participant.program)
+	return render(request, "tasks.html", {"tasks": tasks})
